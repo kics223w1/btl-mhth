@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pnml xmlns="http://www.pnml.org/version-2009/grammar/pnml">
+  <net id="net_choice_conflict" type="http://www.pnml.org/version-2009/grammar/ptnet">
+    <name>
+      <text>Choice/Conflict (1-safe)</text>
+    </name>
+    <page id="page1">
+      <place id="p0">
+        <name><text>start</text></name>
+        <initialMarking><text>1</text></initialMarking>
+      </place>
+      <place id="p1">
+        <name><text>pathA</text></name>
+      </place>
+      <place id="p2">
+        <name><text>pathB</text></name>
+      </place>
+
+      <transition id="t_a">
+        <name><text>chooseA</text></name>
+      </transition>
+      <transition id="t_b">
+        <name><text>chooseB</text></name>
+      </transition>
+
+      <arc id="a1" source="p0" target="t_a"/>
+      <arc id="a2" source="t_a" target="p1"/>
+      <arc id="a3" source="p0" target="t_b"/>
+      <arc id="a4" source="t_b" target="p2"/>
+      <place id="p1a">
+        <name><text>pathA1</text></name>
+      </place>
+      <place id="p1b">
+        <name><text>pathA2</text></name>
+      </place>
+      <place id="p2a">
+        <name><text>pathB1</text></name>
+      </place>
+      <place id="p2b">
+        <name><text>pathB2</text></name>
+      </place>
+      <transition id="t_a1">
+        <name><text>chooseA1</text></name>
+      </transition>
+      <transition id="t_a2">
+        <name><text>chooseA2</text></name>
+      </transition>
+      <transition id="t_b1">
+        <name><text>chooseB1</text></name>
+      </transition>
+      <transition id="t_b2">
+        <name><text>chooseB2</text></name>
+      </transition>
+
+      <!-- nested choices from A and B -->
+      <arc id="a5" source="p1" target="t_a1"/>
+      <arc id="a6" source="t_a1" target="p1a"/>
+      <arc id="a7" source="p1" target="t_a2"/>
+      <arc id="a8" source="t_a2" target="p1b"/>
+
+      <arc id="a9" source="p2" target="t_b1"/>
+      <arc id="a10" source="t_b1" target="p2a"/>
+      <arc id="a11" source="p2" target="t_b2"/>
+      <arc id="a12" source="t_b2" target="p2b"/>
+    </page>
+  </net>
+</pnml>
+
+

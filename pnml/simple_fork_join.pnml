@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pnml xmlns="http://www.pnml.org/version-2009/grammar/pnml">
+  <net id="net_simple_fork_join" type="http://www.pnml.org/version-2009/grammar/ptnet">
+    <name>
+      <text>Simple AND-fork/AND-join (1-safe)</text>
+    </name>
+    <page id="page1">
+      <place id="p0">
+        <name><text>start</text></name>
+        <initialMarking><text>1</text></initialMarking>
+      </place>
+      <place id="p1">
+        <name><text>branch1</text></name>
+      </place>
+      <place id="p2">
+        <name><text>branch2</text></name>
+      </place>
+      <place id="p1d">
+        <name><text>done1</text></name>
+      </place>
+      <place id="p2d">
+        <name><text>done2</text></name>
+      </place>
+      <place id="p3">
+        <name><text>end</text></name>
+      </place>
+
+      <transition id="t_split">
+        <name><text>split</text></name>
+      </transition>
+      <transition id="t1">
+        <name><text>task1</text></name>
+      </transition>
+      <transition id="t2">
+        <name><text>task2</text></name>
+      </transition>
+      <transition id="t_join">
+        <name><text>join</text></name>
+      </transition>
+      <place id="p3b">
+        <name><text>branch3</text></name>
+      </place>
+      <place id="p4b">
+        <name><text>branch4</text></name>
+      </place>
+      <place id="p3bd">
+        <name><text>done3</text></name>
+      </place>
+      <place id="p4bd">
+        <name><text>done4</text></name>
+      </place>
+      <transition id="t3">
+        <name><text>task3</text></name>
+      </transition>
+      <transition id="t4">
+        <name><text>task4</text></name>
+      </transition>
+
+      <arc id="a1" source="p0" target="t_split"/>
+      <arc id="a2" source="t_split" target="p1"/>
+      <arc id="a3" source="t_split" target="p2"/>
+      <arc id="a11" source="t_split" target="p3b"/>
+      <arc id="a12" source="t_split" target="p4b"/>
+
+      <arc id="a4" source="p1" target="t1"/>
+      <arc id="a5" source="t1" target="p1d"/>
+      <arc id="a13" source="p3b" target="t3"/>
+      <arc id="a14" source="t3" target="p3bd"/>
+
+      <arc id="a6" source="p2" target="t2"/>
+      <arc id="a7" source="t2" target="p2d"/>
+      <arc id="a15" source="p4b" target="t4"/>
+      <arc id="a16" source="t4" target="p4bd"/>
+
+      <arc id="a8" source="p1d" target="t_join"/>
+      <arc id="a9" source="p2d" target="t_join"/>
+      <arc id="a10" source="t_join" target="p3"/>
+      <arc id="a17" source="p3bd" target="t_join"/>
+      <arc id="a18" source="p4bd" target="t_join"/>
+    </page>
+  </net>
+</pnml>
+
+

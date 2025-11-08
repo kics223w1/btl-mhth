@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pnml xmlns="http://www.pnml.org/version-2009/grammar/pnml">
+  <net id="net_producer_consumer_1safe" type="http://www.pnml.org/version-2009/grammar/ptnet">
+    <name>
+      <text>Producer-Consumer with Buffer Capacity 1 (1-safe)</text>
+    </name>
+    <page id="page1">
+      <place id="pr">
+        <name><text>producerReady</text></name>
+        <initialMarking><text>1</text></initialMarking>
+      </place>
+      <place id="cr">
+        <name><text>consumerReady</text></name>
+        <initialMarking><text>1</text></initialMarking>
+      </place>
+      <place id="buf">
+        <name><text>buffer</text></name>
+      </place>
+
+      <transition id="produce">
+        <name><text>produce</text></name>
+      </transition>
+      <transition id="consume">
+        <name><text>consume</text></name>
+      </transition>
+
+      <!-- produce keeps producerReady and fills buffer -->
+      <arc id="a1" source="pr" target="produce"/>
+      <arc id="a2" source="produce" target="pr"/>
+      <arc id="a3" source="produce" target="buf"/>
+
+      <!-- consume requires consumerReady and buffer; keeps consumerReady -->
+      <arc id="a4" source="cr" target="consume"/>
+      <arc id="a5" source="buf" target="consume"/>
+      <arc id="a6" source="consume" target="cr"/>
+
+      <place id="buf2">
+        <name><text>buffer2</text></name>
+      </place>
+
+      <transition id="shift">
+        <name><text>shift</text></name>
+      </transition>
+      <transition id="consume2">
+        <name><text>consume2</text></name>
+      </transition>
+
+      <!-- optional two-stage buffer path -->
+      <arc id="a7" source="buf" target="shift"/>
+      <arc id="a8" source="shift" target="buf2"/>
+
+      <!-- alternate consumption from second stage -->
+      <arc id="a9" source="cr" target="consume2"/>
+      <arc id="a10" source="buf2" target="consume2"/>
+      <arc id="a11" source="consume2" target="cr"/>
+    </page>
+  </net>
+</pnml>
+
+

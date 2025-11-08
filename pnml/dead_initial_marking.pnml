@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pnml xmlns="http://www.pnml.org/version-2009/grammar/pnml">
+  <net id="net_dead_initial_marking" type="http://www.pnml.org/version-2009/grammar/ptnet">
+    <name>
+      <text>Dead at Initial Marking (1-safe)</text>
+    </name>
+    <page id="page1">
+      <place id="p0">
+        <name><text>isolated</text></name>
+        <initialMarking><text>1</text></initialMarking>
+      </place>
+      <!-- No transitions or arcs: initial marking is dead -->
+      <place id="p1">
+        <name><text>isolated2</text></name>
+        <initialMarking><text>1</text></initialMarking>
+      </place>
+      <place id="p2">
+        <name><text>isolated3</text></name>
+      </place>
+      <place id="p3">
+        <name><text>isolated4</text></name>
+        <initialMarking><text>1</text></initialMarking>
+      </place>
+      <place id="p4">
+        <name><text>isolated5</text></name>
+      </place>
+    </page>
+  </net>
+</pnml>
+
+

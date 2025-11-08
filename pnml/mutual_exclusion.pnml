@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pnml xmlns="http://www.pnml.org/version-2009/grammar/pnml">
+  <net id="net_mutual_exclusion" type="http://www.pnml.org/version-2009/grammar/ptnet">
+    <name>
+      <text>Mutual Exclusion with Single Mutex (1-safe)</text>
+    </name>
+    <page id="page1">
+      <place id="idle1">
+        <name><text>idle1</text></name>
+        <initialMarking><text>1</text></initialMarking>
+      </place>
+      <place id="crit1">
+        <name><text>crit1</text></name>
+      </place>
+      <place id="idle2">
+        <name><text>idle2</text></name>
+        <initialMarking><text>1</text></initialMarking>
+      </place>
+      <place id="crit2">
+        <name><text>crit2</text></name>
+      </place>
+      <place id="mutex">
+        <name><text>mutex</text></name>
+        <initialMarking><text>1</text></initialMarking>
+      </place>
+
+      <transition id="t1_enter">
+        <name><text>p1_enter</text></name>
+      </transition>
+      <transition id="t1_exit">
+        <name><text>p1_exit</text></name>
+      </transition>
+      <transition id="t2_enter">
+        <name><text>p2_enter</text></name>
+      </transition>
+      <transition id="t2_exit">
+        <name><text>p2_exit</text></name>
+      </transition>
+
+      <arc id="a1" source="idle1" target="t1_enter"/>
+      <arc id="a2" source="mutex" target="t1_enter"/>
+      <arc id="a3" source="t1_enter" target="crit1"/>
+
+      <arc id="a4" source="crit1" target="t1_exit"/>
+      <arc id="a5" source="t1_exit" target="idle1"/>
+      <arc id="a6" source="t1_exit" target="mutex"/>
+
+      <arc id="a7" source="idle2" target="t2_enter"/>
+      <arc id="a8" source="mutex" target="t2_enter"/>
+      <arc id="a9" source="t2_enter" target="crit2"/>
+
+      <arc id="a10" source="crit2" target="t2_exit"/>
+      <arc id="a11" source="t2_exit" target="idle2"/>
+      <arc id="a12" source="t2_exit" target="mutex"/>
+
+      <place id="idle3">
+        <name><text>idle3</text></name>
+        <initialMarking><text>1</text></initialMarking>
+      </place>
+      <place id="crit3">
+        <name><text>crit3</text></name>
+      </place>
+      <place id="idle4">
+        <name><text>idle4</text></name>
+        <initialMarking><text>1</text></initialMarking>
+      </place>
+      <place id="crit4">
+        <name><text>crit4</text></name>
+      </place>
+
+      <transition id="t3_enter">
+        <name><text>p3_enter</text></name>
+      </transition>
+      <transition id="t3_exit">
+        <name><text>p3_exit</text></name>
+      </transition>
+      <transition id="t4_enter">
+        <name><text>p4_enter</text></name>
+      </transition>
+      <transition id="t4_exit">
+        <name><text>p4_exit</text></name>
+      </transition>
+
+      <arc id="a13" source="idle3" target="t3_enter"/>
+      <arc id="a14" source="mutex" target="t3_enter"/>
+      <arc id="a15" source="t3_enter" target="crit3"/>
+
+      <arc id="a16" source="crit3" target="t3_exit"/>
+      <arc id="a17" source="t3_exit" target="idle3"/>
+      <arc id="a18" source="t3_exit" target="mutex"/>
+
+      <arc id="a19" source="idle4" target="t4_enter"/>
+      <arc id="a20" source="mutex" target="t4_enter"/>
+      <arc id="a21" source="t4_enter" target="crit4"/>
+
+      <arc id="a22" source="crit4" target="t4_exit"/>
+      <arc id="a23" source="t4_exit" target="idle4"/>
+      <arc id="a24" source="t4_exit" target="mutex"/>
+    </page>
+  </net>
+</pnml>
+
+
